@@ -450,7 +450,7 @@ export class MySqlDialect {
 
 		const limitSql = this.buildLimit(limit);
 
-		const offsetSql = offset ? sql` offset ${offset}` : undefined;
+		const offsetSql = offset !== undefined ? sql` offset ${offset}` : undefined;
 
 		const useIndexSql = this.buildIndex({ indexes: useIndex, indexFor: 'USE' });
 
@@ -553,7 +553,7 @@ export class MySqlDialect {
 
 		const operatorChunk = sql.raw(`${type} ${isAll ? 'all ' : ''}`);
 
-		const offsetSql = offset ? sql` offset ${offset}` : undefined;
+		const offsetSql = offset !== undefined ? sql` offset ${offset}` : undefined;
 
 		return sql`${leftChunk}${operatorChunk}${rightChunk}${orderBySql}${limitSql}${offsetSql}`;
 	}

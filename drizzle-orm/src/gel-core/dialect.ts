@@ -410,7 +410,7 @@ export class GelDialect {
 			? sql` limit ${limit}`
 			: undefined;
 
-		const offsetSql = offset ? sql` offset ${offset}` : undefined;
+		const offsetSql = offset !== undefined ? sql` offset ${offset}` : undefined;
 
 		const lockingClauseSql = sql.empty();
 		if (lockingClause) {
@@ -500,7 +500,7 @@ export class GelDialect {
 
 		const operatorChunk = sql.raw(`${type} ${isAll ? 'all ' : ''}`);
 
-		const offsetSql = offset ? sql` offset ${offset}` : undefined;
+		const offsetSql = offset !== undefined ? sql` offset ${offset}` : undefined;
 
 		return sql`${leftChunk}${operatorChunk}${rightChunk}${orderBySql}${limitSql}${offsetSql}`;
 	}

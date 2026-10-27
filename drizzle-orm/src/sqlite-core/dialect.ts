@@ -423,7 +423,7 @@ export abstract class SQLiteDialect {
 
 		const limitSql = this.buildLimit(limit);
 
-		const offsetSql = offset ? sql` offset ${offset}` : undefined;
+		const offsetSql = offset !== undefined ? sql` offset ${offset}` : undefined;
 
 		const finalQuery =
 			sql`${withSql}select${distinctSql} ${selection} from ${tableSql}${joinsSql}${whereSql}${groupBySql}${havingSql}${orderBySql}${limitSql}${offsetSql}`;
@@ -502,7 +502,7 @@ export abstract class SQLiteDialect {
 
 		const operatorChunk = sql.raw(`${type} ${isAll ? 'all ' : ''}`);
 
-		const offsetSql = offset ? sql` offset ${offset}` : undefined;
+		const offsetSql = offset !== undefined ? sql` offset ${offset}` : undefined;
 
 		return sql`${leftChunk}${operatorChunk}${rightChunk}${orderBySql}${limitSql}${offsetSql}`;
 	}
